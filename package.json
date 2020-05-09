@@ -1,0 +1,21 @@
+{
+  "name": "Excel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dima9119708/Excel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dima9119708/Excel/issues"
+  },
+  "homepage": "https://github.com/Dima9119708/Excel#readme",
+  "private": true
+}
