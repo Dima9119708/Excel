@@ -11,15 +11,24 @@ function createCell() {
 
 function createColumn(content) {
   return `
-   <div class="column">${content}</div>
+   <div class="column">
+      ${content}
+      <div class="col-resize" data-resize="col"></div>
+   </div>
   `
 }
 
 function createRow(content, count) {
+  const resize = count ? '<div class="row-resize" data-resize="row"></div>' : ''
   return `
     <div class="row">
-        <div class="row-info">${count || ''}</div>
-        <div class="row-data">${content}</div>
+        <div class="row-info">
+          ${count || ''}
+          ${resize}
+        </div>
+        <div class="row-data">
+            ${content}
+        </div>
     </div>
   `
 }
