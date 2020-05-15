@@ -9,9 +9,9 @@ function createCell() {
   `
 }
 
-function createColumn(content) {
+function createColumn(content, index) {
   return `
-   <div class="column">
+   <div class="column" data-resizer data-id=${index}>
       ${content}
       <div class="col-resize" data-resize="col"></div>
    </div>
@@ -20,13 +20,14 @@ function createColumn(content) {
 
 function createRow(content, count) {
   const resize = count ? '<div class="row-resize" data-resize="row"></div>' : ''
+  const dataRowData = count ? 'data-row-data' : ''
   return `
-    <div class="row">
+    <div class="row" data-resizer>
         <div class="row-info">
           ${count || ''}
           ${resize}
         </div>
-        <div class="row-data">
+        <div class="row-data" ${dataRowData}>
             ${content}
         </div>
     </div>
@@ -36,16 +37,6 @@ function createRow(content, count) {
 function toChar(_, index) {
   return String.fromCharCode(CODES.A + index)
 }
-
-function rowCount() {
-  let count = 1
-
-  return function() {
-    return count++
-  }
-}
-
-const count = rowCount()
 
 export function createTable(rowCount = 15) {
   const colsCount = CODES.Z - CODES.A + 1
@@ -64,8 +55,8 @@ export function createTable(rowCount = 15) {
 
   rows.push(createRow(cols))
 
-  for ( let i = 0; i < rowCount; i++ ) {
-    rows.push(createRow(cell, count()))
+  for ( let i = 1; i < rowCount; i++ ) {
+    rows.push(createRow(cell, i))
   }
 
   return rows.join('')

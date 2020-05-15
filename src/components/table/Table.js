@@ -1,5 +1,7 @@
 import {ExcelComponent} from '../../core/ExcelComponent'
 import {createTable} from './table.template'
+import {tableResize} from '../table/table.resizer'
+import {shouldResize} from '../table/shouldResize'
 
 export class Table extends ExcelComponent {
   static className = 'excel__table'
@@ -12,12 +14,12 @@ export class Table extends ExcelComponent {
   }
 
   toHTML() {
-    return createTable(100)
+    return createTable(200)
   }
 
   onMousedown(event) {
-    if (event.target.dataset.resize) {
-      console.log('da')
+    if (shouldResize()) {
+      tableResize(this.$root, event)
     }
   }
 }
