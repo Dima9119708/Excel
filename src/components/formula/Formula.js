@@ -42,6 +42,7 @@ export class Formula extends ExcelComponent {
 
     if ( key == 'Enter' || key == 'Tab' ) {
       event.preventDefault()
+
       this.$emit('Formula:Enter', 'Enter')
     }
   }
