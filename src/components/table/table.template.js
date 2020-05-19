@@ -3,10 +3,18 @@ const CODES = {
   Z : 90
 }
 
-function createCell() {
-  return `
-   <div class="cell" contenteditable></div>
-  `
+function createCell(row) {
+  return function(_, col) {
+    return `
+    <div 
+    class="cell" 
+    contenteditable 
+    data-cell="cell" 
+    data-id=${col}:${row}
+    >
+    </div>
+    `
+  }
 }
 
 function createColumn(content, index) {
@@ -48,15 +56,14 @@ export function createTable(rowCount = 15) {
       .map(createColumn)
       .join('')
 
-  const cell = new Array(colsCount)
-      .fill('')
-      .map(createCell)
-      .join('')
-
   rows.push(createRow(cols))
 
-  for ( let i = 1; i < rowCount; i++ ) {
-    rows.push(createRow(cell, i))
+  for ( let row = 0; row < rowCount; row++ ) {
+    const cell = new Array(colsCount)
+        .fill('')
+        .map(createCell(row))
+        .join('')
+    rows.push(createRow(cell, row + 1))
   }
 
   return rows.join('')
