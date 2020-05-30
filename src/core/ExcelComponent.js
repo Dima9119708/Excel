@@ -5,7 +5,10 @@ export class ExcelComponent extends DomListener {
     super($root, options.listeners)
     this.name = options.name || ''
     this.emmiter = options.emmiter
+    this.store = options.store
+    this.subscriber = options.subscriber || []
     this.unsubscribers = []
+    this.unSub = null
 
     this.prepare()
   }
@@ -21,6 +24,13 @@ export class ExcelComponent extends DomListener {
     const unsub = this.emmiter.subscribe(event, fn)
     this.unsubscribers.push(unsub)
   }
+
+  // State ( redux )
+  $dispatch(action) {
+    this.store.dispatch(action)
+  }
+
+  storeChanges() {}
 
   toHTML() {
     return ''
