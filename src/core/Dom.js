@@ -10,6 +10,7 @@ class Dom {
       this.$el.innerHTML = html
       return this
     }
+
     return this.$el.innerHTML.trim()
   }
 
@@ -52,6 +53,14 @@ class Dom {
     this.$el.removeEventListener(eventType, fn)
   }
 
+  attr(name, value) {
+    if (value) {
+      this.$el.setAttribute(name, value)
+      return this
+    }
+    return this.$el.getAttribute(name)
+  }
+
   closest(parent) {
     return $( this.$el.closest(parent) )
   }
@@ -72,6 +81,13 @@ class Dom {
     Object.keys(styles).forEach( key => {
       this.$el.style[key] = styles[key]
     })
+  }
+
+  getStyles(styles = []) {
+    return styles.reduce((res, s) => {
+      res[s] = this.$el.style[s]
+      return res
+    }, {})
   }
 
   addClass(classEl) {

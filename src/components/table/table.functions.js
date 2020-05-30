@@ -1,4 +1,5 @@
 import {range} from '../../core/utils'
+import {$} from '../../core/Dom'
 
 export function shouldResize(event) {
   return event.target.dataset.resize
@@ -20,7 +21,6 @@ export function matrix($target, $current) {
     return acc
   }, [])
 }
-
 
 export function nextSelector(key, {col, row}) {
   switch (key) {
