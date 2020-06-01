@@ -37,9 +37,6 @@ export class Table extends ExcelComponent {
     this.selectCell(this.$root.querySelector('[data-id="0:0"]'))
 
     this.$on('Formula:input', data => {
-      if ( data === '' ) {
-        this.selection.current.text(' ')
-      }
       this.selection.current.attr('data-value', data)
       this.selection.current.text(parse(data))
       this.updateTextInStore(data)

@@ -15,7 +15,7 @@ class Dom {
   }
 
   text(text) {
-    if (text) {
+    if (text || text == '') {
       this.$el.textContent = text
       return this
     }
