@@ -49,10 +49,6 @@ export class Formula extends ExcelComponent {
   }
 
   storeChanges({currentText}) {
-    if ( currentText === '' ) {
-      this.$formulaInput.text(' ')
-    }
-
     this.$formulaInput.text(currentText)
   }
 }
