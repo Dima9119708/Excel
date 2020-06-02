@@ -21,10 +21,6 @@ const isLoader = () => {
     }
   ]
 
-  if (isDev) {
-    loaders.push('eslint-loader')
-  }
-
   return loaders
 }
 
@@ -34,13 +30,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: filename('js')
-  },
-  resolve: {
-    extensions : ['.js'],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@core': path.resolve(__dirname, 'src/core/')
-    }
   },
   plugins: [
     new CleanWebpackPlugin(),
