@@ -7,7 +7,8 @@ import {
   idCell,
   shouldResize,
   matrix,
-  nextSelector} from './table.functions'
+  nextSelector,
+  startingValueIs} from './table.functions'
 import * as actions from '../../redux/actions'
 import {defaultStyles} from '../../constans'
 import {parse} from '../../core/parse'
@@ -37,7 +38,7 @@ export class Table extends ExcelComponent {
     this.selectCell(this.$root.querySelector('[data-id="0:0"]'))
 
     this.$on('Formula:input', data => {
-      this.selection.current.attr('data-value', data)
+      this.selection.current.attr('data-value', startingValueIs(data) )
       this.selection.current.text(parse(data))
       this.updateTextInStore(data)
     })

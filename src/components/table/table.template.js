@@ -1,6 +1,7 @@
 import {toInlineStyles} from '../../core/utils'
 import {defaultStyles} from '../../constans'
 import {parse} from '../../core/parse'
+import {startingValueIs} from './table.functions'
 
 const CODES = {
   A : 65,
@@ -39,7 +40,7 @@ function toCell(row, state) {
     return `
     <div 
     class="cell" 
-    contenteditable 
+    contenteditable="true"
     data-cell="cell"
     data-value="${dataState}"
     data-id=${id}

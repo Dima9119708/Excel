@@ -19,7 +19,11 @@ export class Formula extends ExcelComponent {
     this.$formulaInput = $(this.$root.querySelector('[data-formula-input]'))
 
     this.$on('TableText', data => {
-      this.$formulaInput.text(data.attr('data-value'))
+      if (data.attr('data-value').startsWith('=')) {
+        this.$formulaInput.text(data.attr('data-value'))
+      } else {
+        this.$formulaInput.text(data.text())
+      }
     })
   }
 

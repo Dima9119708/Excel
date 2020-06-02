@@ -3,7 +3,8 @@ import {
   CHANGE_TEXT,
   CHANGE_STYLE,
   APPLY_STYLES,
-  HEADER_TITTLE
+  HEADER_TITTLE,
+  DATE
 } from './types'
 
 export function rootReducer(state, action) {
@@ -43,6 +44,14 @@ export function rootReducer(state, action) {
       return {
         ...state,
         ['headerTitle'] : action.data
+      }
+    }
+
+    case DATE: {
+      return {
+        ...state,
+        ['date'] : `${new Date().toLocaleDateString()}
+                    ${new Date().toLocaleTimeString()}`
       }
     }
     default: return JSON.parse(JSON.stringify(state))
