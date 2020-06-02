@@ -1,10 +1,10 @@
 import {$} from '../../core/Dom'
 import {Emmiter} from '../../core/Emmiter'
 import {StoreSubscriber} from '../../core/StoreSubscriber'
+import * as actions from '../../redux/actions'
 
 export class Excel {
-  constructor(selector, options) {
-    this.$el = $(selector)
+  constructor(options) {
     this.components = options.components || []
     this.emmiter = new Emmiter
     this.store = options.store
@@ -30,9 +30,8 @@ export class Excel {
     return $root
   }
 
-  render() {
-    this.$el.append(this.getRoot())
-
+  init() {
+    this.store.dispatch(actions.date())
     this.subscriber.subscribeComponents(this.components)
     this.components.forEach( Component => Component.init());
   }

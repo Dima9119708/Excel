@@ -1,6 +1,8 @@
 import {ExcelComponent} from '../../core/ExcelComponent';
 import * as actions from '../../redux/actions'
 import {debounce} from '../../core/utils';
+import {$} from '../../core/Dom'
+import {ActiveRoute} from '../../core/routes/ActiveRoute';
 
 export class Header extends ExcelComponent {
   static className = 'excel__header'
@@ -8,7 +10,7 @@ export class Header extends ExcelComponent {
   constructor($root, options) {
     super($root, {
       name : 'Header',
-      listeners : ['input'],
+      listeners : ['input', 'click'],
       ...options
     })
   }
@@ -25,12 +27,12 @@ export class Header extends ExcelComponent {
 
       <div>
 
-        <div class="button">
-          <i class="material-icons">delete</i>
+        <div class="button" data-delete="delete">
+          <i class="material-icons" data-delete="delete">delete</i>
         </div>
 
-        <div class="button">
-          <i class="material-icons">exit_to_app</i>
+        <div class="button" data-exit="exit">
+          <i class="material-icons" data-exit="exit">exit_to_app</i>
         </div>
 
       </div>
@@ -39,5 +41,15 @@ export class Header extends ExcelComponent {
 
   onInput(event) {
     this.$dispatch(actions.headerTittle(event.target.value))
+  }
+
+  onClick(event) {
+    if ( $(event.target).getAttribute('exit')) {
+      ActiveRoute.exit
+    } else if ($(event.target).getAttribute('delete')) {
+      const params = ActiveRoute.param
+      localStorage.removeItem(`excel:${params}`)
+      ActiveRoute.exit
+    }
   }
 }

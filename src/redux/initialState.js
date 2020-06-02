@@ -1,4 +1,3 @@
-import {storage} from '../core/utils'
 import {defaultStyles} from '../constans'
 
 const defaultState = {
@@ -8,9 +7,16 @@ const defaultState = {
   currentText : '',
   currentStyles : defaultStyles,
   stylesState : {},
-  headerTitle : 'Новая таблица'
+  headerTitle : 'Новая таблица',
+  date : ''
 }
 
-export const initialState = storage('excel-table')
-      ? storage('excel-table')
-      : defaultState
+const normalize = state => ({
+  ...state,
+  currentStyles : defaultStyles,
+  currentText : ''
+})
+
+export function normalizeInitialState(state) {
+  return state ? normalize(state) : defaultState
+}

@@ -1,5 +1,4 @@
 import {range} from '../../core/utils'
-import {$} from '../../core/Dom'
 
 export function shouldResize(event) {
   return event.target.dataset.resize
@@ -45,4 +44,13 @@ export function nextSelector(key, {col, row}) {
   }
 
   return `[data-id="${col}:${row}"]`
+}
+
+export function startingValueIs(value) {
+  if (value === '') {
+    return ' '
+  }
+  if (value.startsWith('=')) {
+    return value
+  }
 }
